@@ -10,7 +10,7 @@ cypress/reports/*
 cypress/screenshots/*
 cypress/videos/*
 
-/node_modules
+node_modules/
 
 ### macOS ###
 # General
