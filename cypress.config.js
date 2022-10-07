@@ -12,6 +12,7 @@ module.exports = defineConfig({
     'chromeWebSecurity': false,
     "cucumberautocomplete.strictGherkinCompletion": true,
     "include": ["node_modules/cypress", "./cypress/**/*.js"],
+    'supportFile': false,
     async setupNodeEvents(on, config) {
       const bundler = createBundler({
         plugins: [createEsbuildPlugin(config)],
@@ -22,6 +23,6 @@ module.exports = defineConfig({
 
       return config;
     },
-    specPattern: 'cypress/e2e/**/*.feature',
+    specPattern: '**/e2e/**/*.feature',
   },
 });
