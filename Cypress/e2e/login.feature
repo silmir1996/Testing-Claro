@@ -25,7 +25,7 @@ Feature: Login Feature
     When A user clicks on the login button
     Then A user will be receiving a failed message
 
-    Scenario: Unsuccessful Login - Wrong password credential
+    Scenario: Unsuccessful Login - Wrong password 
     Given A user opens the login page 
     When A user enter the username 'standard_user'
     When A user enter the wrong password 'secret'
