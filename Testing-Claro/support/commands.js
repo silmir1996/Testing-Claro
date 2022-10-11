@@ -10,6 +10,9 @@
 //
 //
 // -- This is a parent command --
+
+import "cypress-localstorage-commands";
+
 Cypress.Commands.add('saveLocalStorage', () => {
     Object.keys(localStorage).forEach((key) =>{
         LOCAL_STORAGE_MEMORY[key] = localStorage[key];

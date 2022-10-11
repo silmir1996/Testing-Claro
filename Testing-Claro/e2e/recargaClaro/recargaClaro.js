@@ -1,9 +1,12 @@
  import {Given, When, Then, And, Background, Before, After} from '@badeball/cypress-cucumber-preprocessor';
  import '@testing-library/cypress/add-commands';
+ import "cypress-localstorage-commands";
 
-//Background
-Given ('A user opens the login page', () =>{
-    cy.visit("/", {failOnStatusCode: false})
+
+//Scenario: Login
+
+Given ('A user opens the login page', () => {
+    cy.visit("/")
 });
 
 When ('A user enter the username {string} and the password {string}', (username,password) =>{
@@ -11,30 +14,41 @@ When ('A user enter the username {string} and the password {string}', (username,
     cy.get('#kc-login').click();
     cy.get ('#password') .type (password)
 });
+
 When ('A user clicks on the login button', ()=>{
     cy.get('#kc-login').click()
 });
+
 Then ('A user will be logged in', ()=> {
     cy.url().should ('contain', 'https://qa.claropay.com.ar/landing');
     cy.visit("/", { timeout: 30000 });
-    it ('Almacenar datos de login', () => {
-        cy.saveLocalStorage ()
-    })
-   
-})
-//Scenario
+    cy.url().should ('contain', 'https://qa.claropay.com.ar/Inicio');
+    cy.saveLocalStorage ()
+});
 
-Given ('A user clicks on Recarga Claro', ()=>{
-    it ('Almacenar datos de login', () => {
-        cy.restoreLocalStorage ()
-        })
-        cy.get('.r-150rngu > .r-18u37iz > :nth-child(2) > [data-testid]').click()
-})
+//Background
+
+Given ('A user retrieves its login session cookies', () => {
+    cy.restoreLocalStorage(),
+    cy.visit ('https://qa.claropay.com.ar/Inicio'),
+    cy.restoreLocalStorage()
+});
+
+//Scenario: Ingresar a Recarga Claro 
+
+When ('A user clicks on Recarga Claro', ()=>{
+    cy.get('.r-150rngu > .r-18u37iz > :nth-child(2) > [data-testid]',{ timeout: 30000 }).click()
+});
 
 Then ('A user sees Recargar Claro section', ()=>{
-    cy.url () .should ('contain', 'https://qa.claropay.com.ar/RecargarClaro')
-})
+    cy.url().should('contain', 'https://qa.claropay.com.ar/RecargarClaro')
+});
 
+//Scenario: Recarga Claro
+
+When ('A user clicks on "Recarga nueva linea claro" button', ()=>{
+    cy.get('.r-1kihuf0 > .css-1dbjc4n > [data-testid]').click()
+});
 
 // Then ('A user will be receiving a failed message', ()=> {
 //     cy.findByText('Epic sadface: Username and password do not match any user in this service').should('exist') 

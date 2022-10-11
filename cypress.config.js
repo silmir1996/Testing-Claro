@@ -21,9 +21,10 @@ module.exports = defineConfig({
 
       on('file:preprocessor', bundler);
       await addCucumberPreprocessorPlugin(on, config);
-
+      
       return config;
     },
-    specPattern: '**/e2e/**/*.feature',
+
+    specPattern: '**/e2e/*.feature',
   },
 });

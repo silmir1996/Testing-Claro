@@ -1,5 +1,5 @@
 describe ('Login Test', function(){
-
+    
     it ('Success Login', () => {
         cy.visit ('/')
         cy.get ('#user-name') .type ('standard_user')
@@ -7,5 +7,5 @@ describe ('Login Test', function(){
         cy.get ('#login-button').click ()
         cy.url ().should('contains', '/inventory.html')
             });
-})
+});
 
