@@ -1,4 +1,5 @@
 const { defineConfig } = require('cypress');
+// const { Before, After } = require('cypress-cucumber-preprocessor/steps');
 const createBundler = require('@bahmutov/cypress-esbuild-preprocessor');
 const addCucumberPreprocessorPlugin =
   require('@badeball/cypress-cucumber-preprocessor').addCucumberPreprocessorPlugin;
@@ -14,10 +15,14 @@ module.exports = defineConfig({
     "cucumberautocomplete.strictGherkinCompletion": true,
     "include": ["node_modules/cypress", "./cypress/**/*.js"],
     'supportFile': false,
+    
     async setupNodeEvents(on, config) {
+      require('cypress-data-session/src/plugin')(on, config);
       const bundler = createBundler({
         plugins: [createEsbuildPlugin(config)],
       });
+
+      require("cypress-localstorage-commands/plugin")(on, config);
 
       on('file:preprocessor', bundler);
       await addCucumberPreprocessorPlugin(on, config);

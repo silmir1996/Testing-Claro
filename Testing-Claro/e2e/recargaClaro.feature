@@ -1,7 +1,4 @@
 Feature: Recarga Claro 
-
-    Background: Cookies
-        Given A user retrieves its login session cookies
         
     Scenario: Login
         Given A user opens the login page 

@@ -13,6 +13,8 @@
     "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
     "@testing-library/cypress": "^8.0.3",
     "cypress": "^10.9.0",
-    "cypress-localstorage-commands": "^2.2.1"
+    "cypress-data-session": "^2.2.1",
+    "cypress-localstorage-commands": "^2.2.1",
+    "cypress-v10-preserve-cookie": "^1.2.1"
   }
 }

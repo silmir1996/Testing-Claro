@@ -1,9 +1,55 @@
- import {Given, When, Then, And, Background, Before, After} from '@badeball/cypress-cucumber-preprocessor';
+ import {Given, When, Then, And, Background} from '@badeball/cypress-cucumber-preprocessor';
  import '@testing-library/cypress/add-commands';
  import "cypress-localstorage-commands";
+ import 'cypress-v10-preserve-cookie';
+ import "cypress-localstorage-commands";
+ import 'cypress-data-session';
 
 
 //Scenario: Login
+
+// before(() => {
+// cy.clearLocalStorageSnapshot();
+// cy.log ('se limpiaron las cookies')
+// });
+
+beforeEach(() => {
+cy.restoreLocalStorage('_grecaptcha', 'APP_INSTALLED', 'EXPO_CONSTANTS_INSTALLATION_ID', 'session_2' , 'session', 'JSESSIONID', 'b34b515f92ad5491be31f2bd57e9fba7');
+cy.restoreLocalStorage().wait (2000);
+cy.log ('Cookies recuperadas');
+cy.preserveCookieOnce(
+    '_grecaptcha', 
+    'APP_INSTALLED', 
+    'EXPO_CONSTANTS_INSTALLATION_ID', 
+    'session_2' , 
+    'session', 
+    'JSESSIONID', 
+    'b34b515f92ad5491be31f2bd57e9fba7');
+cy.getCookie ('_grecaptcha');
+cy.getCookie ('APP_INSTALLED');
+cy.getCookie ('EXPO_CONSTANTS_INSTALLATION_ID');
+cy.getCookie ('session_2');
+cy.getCookie ('session');
+cy.getCookie ('JSESSIONID');
+cy.getCookie ('b34b515f92ad5491be31f2bd57e9fba7');
+cy.wait (2000);
+cy.visit("/")
+});
+
+afterEach(() => {
+cy.saveLocalStorage('_grecaptcha', 'APP_INSTALLED', 'EXPO_CONSTANTS_INSTALLATION_ID', 'session_2' , 'session', 'JSESSIONID', 'b34b515f92ad5491be31f2bd57e9fba7');
+cy.preserveCookieOnce('_grecaptcha', 'APP_INSTALLED', 'EXPO_CONSTANTS_INSTALLATION_ID', 'session_2' , 'session', 'JSESSIONID', 'b34b515f92ad5491be31f2bd57e9fba7');
+cy.log ('Cookies guardadas')
+});
+
+// Given ('A user retrieves its login session cookies', () => {
+//     cy.restoreLocalStorage();
+//     cy.visit("/")
+//   });
+
+// before(() => {
+//     cy.preserveCookieOnce('_grecaptcha', 'APP_INSTALLED', 'EXPO_CONSTANTS_INSTALLATION_ID', 'session_2' , 'session', 'JSESSIONID', 'b34b515f92ad5491be31f2bd57e9fba7');
+// })
 
 Given ('A user opens the login page', () => {
     cy.visit("/")
@@ -23,16 +69,15 @@ Then ('A user will be logged in', ()=> {
     cy.url().should ('contain', 'https://qa.claropay.com.ar/landing');
     cy.visit("/", { timeout: 30000 });
     cy.url().should ('contain', 'https://qa.claropay.com.ar/Inicio');
-    cy.saveLocalStorage ()
 });
 
 //Background
 
-Given ('A user retrieves its login session cookies', () => {
-    cy.restoreLocalStorage(),
-    cy.visit ('https://qa.claropay.com.ar/Inicio'),
-    cy.restoreLocalStorage()
-});
+// Given ('A user retrieves its login session cookies', () => {
+//     cy.restoreLocalStorage('_grecaptcha', 'APP_INSTALLED', 'EXPO_CONSTANTS_INSTALLATION_ID', 'session_2' , 'session', 'JSESSIONID', 'b34b515f92ad5491be31f2bd57e9fba7'),
+//     cy.visit ('https://qa.claropay.com.ar/Inicio'),
+//     cy.restoreLocalStorage()
+// });
 
 //Scenario: Ingresar a Recarga Claro 
 
@@ -49,10 +94,6 @@ Then ('A user sees Recargar Claro section', ()=>{
 When ('A user clicks on "Recarga nueva linea claro" button', ()=>{
     cy.get('.r-1kihuf0 > .css-1dbjc4n > [data-testid]').click()
 });
-
-// Then ('A user will be receiving a failed message', ()=> {
-//     cy.findByText('Epic sadface: Username and password do not match any user in this service').should('exist') 
-// })
 
 
 // Then ('A user will be receiving a blocked user message', ()=> {

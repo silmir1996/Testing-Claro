@@ -12,19 +12,7 @@
 // -- This is a parent command --
 
 import "cypress-localstorage-commands";
-
-Cypress.Commands.add('saveLocalStorage', () => {
-    Object.keys(localStorage).forEach((key) =>{
-        LOCAL_STORAGE_MEMORY[key] = localStorage[key];
-    });
-});
-
-Cypress.Commands.add('restoreLocalStorage', () => {
-    Object.keys(LOCAL_STORAGE_MEMORY).forEach((key) =>{
-        localStorage.setitem(key,  LOCAL_STORAGE_MEMORY[key]);
-    });
-});
-
+import 'cypress-data-session';
 //
 //
 // -- This is a child command --
