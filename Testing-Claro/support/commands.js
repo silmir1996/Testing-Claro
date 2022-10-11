@@ -10,7 +10,18 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+Cypress.Commands.add('saveLocalStorage', () => {
+    Object.keys(localStorage).forEach((key) =>{
+        LOCAL_STORAGE_MEMORY[key] = localStorage[key];
+    });
+});
+
+Cypress.Commands.add('restoreLocalStorage', () => {
+    Object.keys(LOCAL_STORAGE_MEMORY).forEach((key) =>{
+        localStorage.setitem(key,  LOCAL_STORAGE_MEMORY[key]);
+    });
+});
+
 //
 //
 // -- This is a child command --

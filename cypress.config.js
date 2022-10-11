@@ -7,8 +7,9 @@ const createEsbuildPlugin =
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: 'https://www.saucedemo.com',
+    baseUrl: 'https://qa.claropay.com.ar/ingresar',
     chromeWebSecurity: false,
+    experimentalSessionAndOrigin : true,
     'chromeWebSecurity': false,
     "cucumberautocomplete.strictGherkinCompletion": true,
     "include": ["node_modules/cypress", "./cypress/**/*.js"],
