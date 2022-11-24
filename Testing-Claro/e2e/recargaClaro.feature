@@ -11,7 +11,7 @@ Feature: Recarga Claro
         Then A user sees Recargar Claro section 
 
     Scenario: Recarga Claro
-        Given A user opens the login page logged
+        Given A user opens ClaroPay
         When A user clicks on Recarga Claro
         When A user clicks on "Recarga nueva linea claro" button
 

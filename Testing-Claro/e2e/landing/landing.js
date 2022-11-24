@@ -8,48 +8,20 @@
 
 
 
-//Scenario: Login
-// before ('successfully logs in via GUI',() => {
-//     // cy.intercept('GET', `${Cypress.env('apiUrl')}/models?userId=*`)
-//     //       .as('getUserModels')
-//     cy.loginViaAPI()
-//     // cy.wait('@getUserModels')
-//     // cy.url().should('contain', 'https://qa.claropay.com.ar/Inicio')
-// });
+//Scenario: Ingresar a la Landing - Validacion
 
-before(() => {
-    cy.session('Chris',() =>{
-    cy.visit("/");
-    cy.get('#username') .type('chris+ob4@paisanos.io');
-    cy.get('#kc-login').click();
-    cy.get('#password') .type( 'Paisanos1');
-    cy.get('#kc-login').dblclick().wait(8000);
-    })
+When ('A user access the Landing', () => {
+    cy.visit("qa.claropay.com.ar").wait(4000)
+
 });
 
-// beforeEach (() => {
-//     cy.session('Chris');
-//     cy.visit("qa.claropay.com.ar/Inicio")
-// });
-
-// Given ('A user opens the login page', () => {
-//     cy.visit("qa.claropay.com.ar/Inicio").wait(6000)//{timeout: 40000})
-// });
-
-// When ('A user enter the username {string} and the password {string}', (username,password) =>{
-//     cy.get('#username') .type(username);
-//     cy.get('#kc-login').click();
-//     cy.get('#password') .type(password)
-// });
-
-// When ('A user clicks on the login button', ()=>{
-//     cy.get('#kc-login').click().wait (2000)
-// });
-
-// Then ('A user will be logged in', ()=> {
-//     cy.visit('https://qa.claropay.com.ar/Inicio', {timeout: 40000});
-//     // cy.url().should('contain', 'https://qa.claropay.com.ar/Inicio');
-// });
+Then ('A user visualize and explore it entirely', ()=> {
+  cy.get('h1 > :nth-child(1)').should('have.text', 'Esta billetera')
+  cy.get('h1 > :nth-child(2)').should('have.text', 'te queda bien.')
+  cy.get('.styles_wrapper__SKuiD > p > :nth-child(1)').should('have.text', 'Iniciá sesión para empezar a vivir la')
+  cy.get('.styles_wrapper__SKuiD > p > :nth-child(2)').should('have.text', 'experiencia Claro Pay.')
+  cy.get('.styles_wrapper__SKuiD > .btn').should('exist').should('have.text', 'Iniciar sesión').should('be.enabled')
+});
 
 //Scenario: Ingresar a Recarga Claro 
 
