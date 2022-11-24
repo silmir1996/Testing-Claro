@@ -8,13 +8,14 @@ const createEsbuildPlugin =
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: 'https://qa.claropay.com.ar/ingresar',
+    baseUrl: 'https://qa.claropay.com.ar/Inicio',
     chromeWebSecurity: false,
-    experimentalSessionAndOrigin : true,
+    experimentalSessionAndOrigin: true,
+    experimentalSessionSupport : true,
     'chromeWebSecurity': false,
     "cucumberautocomplete.strictGherkinCompletion": true,
     "include": ["node_modules/cypress", "./cypress/**/*.js"],
-    'supportFile': false,
+    'supportFile': 'Testing-Claro/support/commands.js',
     
     async setupNodeEvents(on, config) {
       require('cypress-data-session/src/plugin')(on, config);

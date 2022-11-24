@@ -10,18 +10,40 @@
 //
 //
 // -- This is a parent command --
+// import 'cypress-data-session';
 
-import "cypress-localstorage-commands";
-import 'cypress-data-session';
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('loginViaAPI', (
+    email = Cypress.env('chris+ob4@paisanos.io'),
+    password = Cypress.env('Paisanos1')
+  ) => {
+    it('Request', ()=> {
+        cy.request('POST', `${Cypress.env('https://desa-login.claro.com.ar')} /auth/realms/claro/login-actions/...`, {
+            username: email,
+            password,
+        }).then((response) => {
+            cy.setCookie('session_2', response.body.session_2);
+            cy.setCookie('session', response.body.session);
+            cy.setCookie('JSESSIONID', response.body.JSESSIONID);
+            cy.setCookie('b34b515f92ad5491be31f2bd57e9fba7', response.body.b34b515f92ad5491be31f2bd57e9fba7)})
+    //   cy.visit('/')
+    })
+});
+
+//   Cypress.Commands.add('loginViaAPI', (
+//   cy.request('POST', 'API', { user: 'Jane', password:"123" }).then(
+//     (response) => {
+//       cy.log(response)
+//     })));
+
+//HIDE FETCH/XHR
+
+const app = window.top;
+if (!app.document.head.querySelector('[data-hide-command-log-request]')) {
+  const style = app.document.createElement('style');
+  style.innerHTML =
+    '.command-name-request, .command-name-xhr { display: none }';
+  style.setAttribute('data-hide-command-log-request', '');
+
+  app.document.head.appendChild(style);
+}

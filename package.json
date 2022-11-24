@@ -4,7 +4,8 @@
   "description": "test",
   "main": "index.js",
   "scripts": {
-    "claro": "cypress open"
+    "claro": "cypress open --e2e --browser chrome",
+    "claroHead": "cypress run --e2e --browser chrome"
   },
   "author": "me",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "cypress": "^10.9.0",
     "cypress-data-session": "^2.2.1",
     "cypress-localstorage-commands": "^2.2.1",
+    "cypress-slow-down": "^1.2.1",
     "cypress-v10-preserve-cookie": "^1.2.1"
   }
 }
