@@ -12,6 +12,8 @@ module.exports = defineConfig({
     chromeWebSecurity: false,
     experimentalSessionAndOrigin: true,
     experimentalSessionSupport : true,
+    viewportWidth: 800,
+    viewportHeight: 660,
     'chromeWebSecurity': false,
     "cucumberautocomplete.strictGherkinCompletion": true,
     "include": ["node_modules/cypress", "./cypress/**/*.js"],

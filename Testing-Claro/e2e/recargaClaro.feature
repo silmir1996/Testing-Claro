@@ -1,3 +1,4 @@
+@skip
 Feature: Recarga Claro 
     # Background:
     #     Given A user opens the login page 

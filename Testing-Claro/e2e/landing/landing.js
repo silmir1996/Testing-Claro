@@ -15,15 +15,35 @@ When ('A user access the Landing', () => {
 
 });
 
-Then ('A user visualize and explore it entirely', ()=> {
-  cy.get('h1 > :nth-child(1)').should('have.text', 'Esta billetera')
-  cy.get('h1 > :nth-child(2)').should('have.text', 'te queda bien.')
-  cy.get('.styles_wrapper__SKuiD > p > :nth-child(1)').should('have.text', 'Iniciá sesión para empezar a vivir la')
-  cy.get('.styles_wrapper__SKuiD > p > :nth-child(2)').should('have.text', 'experiencia Claro Pay.')
-  cy.get('.styles_wrapper__SKuiD > .btn').should('exist').should('have.text', 'Iniciar sesión').should('be.enabled')
+Then ('A user visualizes first section', ()=> {
+    //Assertion de textos
+    cy.get('h1 > :nth-child(1)').should('have.text', 'Esta billetera').should('be.visible')
+    cy.get('h1 > :nth-child(2)').should('have.text', 'te queda bien.').should('be.visible')
+    cy.get('.styles_wrapper__SKuiD > p > :nth-child(1)').should('have.text', 'Iniciá sesión para empezar a vivir la').should('be.visible')
+    cy.get('.styles_wrapper__SKuiD > p > :nth-child(2)').should('have.text', 'experiencia Claro Pay.').should('be.visible')
+    //Assertion de botón Iniciar Sesión, verificando que este habilitado y visible
+    cy.get('.styles_wrapper__SKuiD > .btn').should('have.text', 'Iniciar sesión').should('be.enabled').should('be.visible')
+    //Assertion de Logo Claro Pay en la esquina Izquierda
+    cy.get('#main-container > div.bg-img > header > svg').should('exist').should('be.visible')
+    //Assertion de botón para scrollear abajo: Hover, y que sea visible
+    cy.get('#main-container > div.styles_wrapper__mvT1k.undefined > svg').trigger('mouseover',{force: true}).find('path').should('have.attr','fill','#EB3B2F').should('be.visible')
+    cy.get('#main-container > div.styles_wrapper__mvT1k.undefined > svg').trigger('mouseout').find('path').should('have.attr','fill','#101010').should('be.visible')
 });
 
-//Scenario: Ingresar a Recarga Claro 
+Then ('A user visualizes second section', ()=> {
+    //Assertion de texto y avance a segunda sección
+    cy.contains('Ahorrá con Claro Pay').scrollIntoView().should('be.visible')
+    cy.contains('Pagá una factura Claro y tenés un 25% de reintegro por tres meses. Te devolvemos hasta $250 para que los uses como quieras.').should('be.visible')
+    //Assertion de botones para pasar de Cards
+    cy.get('#main-container > div.bg-img > div > div:nth-child(1) > button').should('be.visible')
+    cy.get('#main-container > div.bg-img > div > div:nth-child(2) > button').should('be.visible')
+    //Assertion de botones para scrollear a arriba y a abajo
+    cy.get('#main-container > div.bg-img > section.styles_wrapper__SKuiD > div.styles_wrapper__qSQ_v.undefined > svg').should('exist').should('be.visible')
+    cy.get('#main-container > div.bg-img > header > svg').should('exist').should('be.visible')
+
+});
+
+//Scenario: Ingresar a Recarga Claro    
 
 Given ('A user opens the login page logged', () => {
     cy.session('Chris').wait (2000)
