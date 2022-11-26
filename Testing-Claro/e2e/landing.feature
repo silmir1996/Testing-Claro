@@ -8,10 +8,15 @@ Feature: Landing
     #     When A user clicks on the login button
     #     Then A user will be logged in
     
-    Scenario: Ingresar a la Landing - Validacion
+    Scenario: Landing - Validation
         When A user access the Landing
         Then A user visualizes first section
         And A user visualizes second section
+        And A user visualizes last section
+
+    # Scenario: TyC APIs Assertion
+    #     When A user visits TyC 
+    #     Then A user will see all sections
 
     # Scenario: Recarga Claro
     #     Given A user opens ClaroPay

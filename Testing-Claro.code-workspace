@@ -13,6 +13,9 @@
 		},
 		"files.exclude": {
 			"**/node_modules": true
+		},
+		"[javascript]": {
+			"editor.maxTokenizationLineLength": 20000000
 		}
 	}
 }
