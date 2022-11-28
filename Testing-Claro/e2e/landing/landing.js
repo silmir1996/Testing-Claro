@@ -105,10 +105,36 @@ Then ('A user visualizes footer links', () => {
     cy.get('[href="https://www.argentina.gob.ar/produccion/defensadelconsumidor/formulario"]').should('be.visible').should('have.text', 'Defensa al consumidor')
 });
 
+//Scenario: Redirections 
+
+When ('A user clicks on Iniciar Sesión button', () => {
+    cy.get('.styles_wrapper__SKuiD > .btn').should('be.enabled').should('be.visible').click({force: true})
+});
+
+When ('A user clicks on Pagá acá button', () => {
+    cy.get(':nth-child(1) > .slideInner___2mfX9 > .undefined > div > a > .btn').scrollIntoView().should('have.text', 'Pagá acá').click({force: true})
+});
+
+When ('A user clicks on Recargá acá button', () => {
+    cy.get('div[style="background-color:#FFFFFF"]').children().children().children().should('have.text', 'Recargá acá').scrollIntoView().click({force: true})
+});
+
+When ('A user clicks on Iniciar Sesión #2 button', () => {
+    cy.get('.styles_card__right__E1tgL > .btn').scrollIntoView({ duration: 2000 }).should('have.text', 'Iniciár sesión').should('be.enabled').click({force: true})
+});
+
+When ('A user clicks on Iniciar Sesión #3 button', () => {
+cy.get('.styles_content__description__gCOEs > .btn').scrollIntoView({ duration: 2000 }).should('have.text', 'Iniciar sesión').should('be.enabled').click({force: true})
+});
+
+Then ('A user will be redirected to login', () => {
+    cy.url().should('contain', 'https://desa-login.claro.com.ar/auth/realms/claro').wait(2000)
+});
+
 // Scenario: TyC APIs and Text assertion
 
 Given ('A user visits TyC', () => {
-   cy.visit('https://qa.claropay.com.ar/landing/legals.html').wait(4000)
+   cy.visit('https://qa.claropay.com.ar/landing/legals.html').wait(2000)
 });
 
 Then ('EP returns 200', () => {

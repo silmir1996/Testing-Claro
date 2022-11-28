@@ -28,10 +28,25 @@ Feature: Landing
         Then A user visualizes footer logo
         And A user visualizes footer links
 
+    Scenario: Redirections 
+        Given A user access the Landing
+        When A user clicks on Iniciar Sesión button
+        Then A user will be redirected to login
+        Given A user access the Landing
+        When A user clicks on Pagá acá button
+        Then A user will be redirected to login
+        Given A user access the Landing
+        When A user clicks on Recargá acá button
+        Then A user will be redirected to login
+        Given A user access the Landing
+        When A user clicks on Iniciar Sesión #2 button
+        Then A user will be redirected to login
+        Given A user access the Landing
+        When A user clicks on Iniciar Sesión #3 button
+        Then A user will be redirected to login
+    
     Scenario: TyC APIs and Text assertion
         Given A user visits TyC
         Then EP returns 200 
         And A user will see all sections
 
-
-    
