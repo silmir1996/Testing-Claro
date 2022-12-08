@@ -5,8 +5,6 @@
  import 'cypress-data-session';
  import { slowCypressDown } from 'cypress-slow-down';
 
-
-
 //Scenario: Landing - First Section Validation
 
 Given ('A user access the Landing', () => {
@@ -34,33 +32,38 @@ Then ('A user visualizes buttons and logo', () => {
 //Scenario: Landing - Second Section Validation
 
 Then ('A user visualizes Ahorra con Claro Pay Card', () => {
-
-    //Assertion card Ahorra con Claro Pay, de texto,y botón 
-    cy.get('div[style="background-color:#FFE2E0"]').scrollIntoView().should('have.text', 'Ahorrá con Claro PayPagá una factura Claro y tenés un 25% de reintegro por tres meses. Te devolvemos hasta $250 para que los uses como quieras.Pagá acá').should('exist').should('be.visible');
-    cy.get('#main-container > div.bg-img > div > div:nth-child(1) > button').scrollIntoView().click().should('exist');
-    cy.get(':nth-child(1) > .slideInner___2mfX9 > .undefined > div > a > .btn').scrollIntoView().should('have.text', 'Pagá acá').should('be.visible')
+    //Assertion card Ahorra con Claro Pay, de texto.
+    cy.get('div[style="background-color:#FFE2E0"]').scrollIntoView().wait(2000).should('have.text', 'Ahorrá con Claro PayPagá una factura Claro y tenés un 25% de reintegro por tres meses. Te devolvemos hasta $250 para que los uses como quieras.Pagá acá').should('be.visible');
+    //Click en boton IZQ/BACK para asegurarse que el swipe automatico no obstaculice assertion del botón Paga aca.
+    cy.get('.buttonBack___1mlaL').click();
+    //Assertion card Ahorra con Claro Pay, de botón.
+    cy.get(':nth-child(1) > .slideInner___2mfX9 > .undefined > div > a > .btn').should('have.text', 'Pagá acá').should('be.visible')
 });
 
 Then ('A user uses buttons to navigate left and right', () => {
-    //Assertion y hacemos click en el botón IZQ, para volver a la card 1, ya que al scrollear se mueve a la 2.
-    cy.get('#main-container > div.bg-img > div > div:nth-child(1) > button').should('be.visible').click();
-    //Assertion y hacemos click en el botón DER para ir a la card 2
-    cy.get('#main-container > div.bg-img > div > div:nth-child(2) > button').should('be.visible').click()
+    //Assertion y hacemos click en el botón DER.
+    cy.get('.buttonNext___2mOCa').should('be.visible').click();
+    //Assertion y hacemos click en el botón IZQ.
+    cy.get('.buttonBack___1mlaL').should('be.visible').click();
+    //Assertion y hacemos click en el botón DER.
+    cy.get('.buttonNext___2mOCa').should('be.visible').click()
 });
 
 Then ('A user visualizes Tus datos rinden más Card', () => {
-    //Assertion de card Tus datos rinden más, de texto y botón
-    cy.get('div[style="background-color:#FFFFFF"]').children().should('have.text', 'Tus datos rinden más¡Recargá con Claro Pay y tenés datos extra! 4GB por 7 días en recargas desde $600Recargá acá').should('be.visible');
-    //Hacemos click en el botón DER para ir a la card 2
-    cy.get('#main-container > div.bg-img > div > div:nth-child(2) > button').should('be.visible').click();
-    cy.get('div[style="background-color:#FFFFFF"]').children().children().children().should('have.text', 'Recargá acá').should('be.visible')
+    //Assertion de card Tus datos rinden más, de texto.
+    cy.get('div[style="background-color:#FFFFFF"]').children().wait(500).should('have.text', 'Tus datos rinden más¡Recargá con Claro Pay y tenés datos extra! 4GB por 7 días en recargas desde $600Recargá acá').should('be.visible');
+    //Click en boton DER/NEXT para asegurarse que el swipe automatico no obstaculice assertion botón Recarga acá.
+    cy.get('.buttonNext___2mOCa').should('be.visible').click();
+    //Assertion de card Tus datos rinden más, de botón.
+    cy.get('div[style="background-color:#FFFFFF"]').children().children().children().should('have.text', 'Recargá acá').should('be.visible');
 });
 
 Then ('A user navigates using scroll buttons', () => {
     //Assertion de botones para scrollear a arriba y a abajo
     cy.get('#main-container > div.bg-img > section.styles_wrapper__SKuiD > div.styles_wrapper__qSQ_v.undefined > svg').should('exist').should('be.visible');
     cy.get('#main-container > div.bg-img > header > svg').should('exist').should('be.visible');
-    cy.get('#main-container > div.styles_wrapper__mvT1k.undefined > svg').trigger('mouseover',{force: true}).find('path').should('have.attr','fill','#EB3B2F')//.click() pero tengo que identificar la diferencia, porque hay 4  elementos
+    //Scroll a arriba de todo.
+    cy.get('#main-container > div.styles_wrapper__mvT1k.undefined > svg').trigger('mouseover', { force: true }).click()
 });
 
 
@@ -108,7 +111,7 @@ Then ('A user visualizes footer links', () => {
 //Scenario: Redirections 
 
 Given ('A user returns to Landing website', () =>{
-    cy.visit("uat.claropay.com.ar/landing").wait(2000)
+    cy.visit("uat.claropay.com.ar/landing").wait(1500)
 });
 
 When ('A user clicks on Iniciar Sesión button', () => {
@@ -137,7 +140,7 @@ When ('A user clicks on Iniciar Sesión #3 button', () => {
 });
 
 Then ('A user will be redirected to login', () => {
-    cy.url().should('contain', 'https://test-login.claro.com.ar/auth/realms/claro').wait(1000)
+    cy.url().should('contain', 'https://test-login.claro.com.ar/auth/realms/claro')
 });
 
 //Scenario: Footer redirections
