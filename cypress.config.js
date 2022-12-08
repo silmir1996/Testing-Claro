@@ -8,7 +8,7 @@ const createEsbuildPlugin =
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: 'https://qa.claropay.com.ar/Inicio',
+    baseUrl: 'https://uat.claropay.com.ar/Inicio',
     chromeWebSecurity: false,
     experimentalSessionAndOrigin: true,
     experimentalSessionSupport : true,
