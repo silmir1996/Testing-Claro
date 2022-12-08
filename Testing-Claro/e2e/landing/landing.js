@@ -34,9 +34,10 @@ Then ('A user visualizes buttons and logo', () => {
 //Scenario: Landing - Second Section Validation
 
 Then ('A user visualizes Ahorra con Claro Pay Card', () => {
+
     //Assertion card Ahorra con Claro Pay, de texto,y botón 
     cy.get('div[style="background-color:#FFE2E0"]').scrollIntoView().should('have.text', 'Ahorrá con Claro PayPagá una factura Claro y tenés un 25% de reintegro por tres meses. Te devolvemos hasta $250 para que los uses como quieras.Pagá acá').should('exist').should('be.visible')
-    cy.get('#main-container > div.bg-img > div > div:nth-child(1) > button').scrollIntoView().should('be.visible').click()
+    cy.get('#main-container > div.bg-img > div > div:nth-child(1) > button').scrollIntoView().click().should('exist')
     cy.get(':nth-child(1) > .slideInner___2mfX9 > .undefined > div > a > .btn').scrollIntoView().should('have.text', 'Pagá acá').should('be.visible')
 });
 
@@ -72,8 +73,8 @@ Then ('A user visualizes Left Slide', () => {
     cy.get('.styles_mock__right__Te9A5 > img').trigger('mouseover', 'right', {force: true});
     cy.contains('TRANSPARENTETu plata y movimientos, siempre demanera clara y detallada.').should('be.visible');
     //.children().should('have.text', 'TRANSPARENTETu plata y movimientos, siempre demanera clara y detallada.').should('be.visible').wait(2000)
-    cy.get('#main-container > div.bg-img > section.styles_wrapper__muwvu > div > div.styles_card__right__E1tgL').should('have.text', 'APROVECHÁCon Clarosalí ganandosiempre.Iniciá sesión y disfrutá de losbeneficios.Iniciár sesión').should('be.visible').scrollIntoView();
-    cy.get('.styles_card__right__E1tgL > .btn').scrollIntoView({ duration: 2000 }).should('have.text', 'Iniciár sesión').should('be.enabled').should('be.visible')
+    cy.get('#main-container > div.bg-img > section.styles_wrapper__muwvu > div > div.styles_card__right__E1tgL').should('have.text', 'APROVECHÁCon Clarosalí ganandosiempre.Iniciá sesión y disfrutá de losbeneficios.Iniciar sesión').should('be.visible').scrollIntoView();
+    cy.get('.styles_card__right__E1tgL > .btn').scrollIntoView({ duration: 2000 }).should('have.text', 'Iniciar sesión').should('be.enabled').should('be.visible')
 });
 
 //Scenario: Landing - Fourth Section Validation
