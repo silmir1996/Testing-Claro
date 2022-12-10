@@ -8,7 +8,7 @@
 //Scenario: Landing - First Section Validation
 
 Given ('A user access the Landing', () => {
-    cy.visit("uat.claropay.com.ar/landing").wait(4000)
+    cy.visit("ni.claropay.com.ar/landing").wait(4000)
 });
 
 Then ('A user visualizes first section text', () => {
@@ -111,7 +111,7 @@ Then ('A user visualizes footer links', () => {
 //Scenario: Redirections 
 
 Given ('A user returns to Landing website', () =>{
-    cy.visit("uat.claropay.com.ar/landing").wait(1500)
+    cy.visit("ni.claropay.com.ar/landing").wait(1500)
 });
 
 When ('A user clicks on Iniciar Sesión button', () => {
@@ -140,7 +140,7 @@ When ('A user clicks on Iniciar Sesión #3 button', () => {
 });
 
 Then ('A user will be redirected to login', () => {
-    cy.url().should('contain', 'https://test-login.claro.com.ar/auth/realms/claro')
+    cy.url().should('contain', 'https://ingreso.claro.com.ar/auth/realms/claro')
 });
 
 //Scenario: Footer redirections
@@ -150,7 +150,7 @@ When ('A user clicks on FAQS', () => {
 });
 
 Then ('A user will be redirected to FAQS url', () => {
-    cy.url().should('be.equal', 'https://uat.claropay.com.ar/landing/faqs.html')
+    cy.url().should('be.equal', 'https://ni.claropay.com.ar/landing/faqs.html')
 });
 
 When ('A user clicks on Apartado legal y regulatorio', () => {
@@ -158,7 +158,7 @@ When ('A user clicks on Apartado legal y regulatorio', () => {
 });
 
 Then ('A user will be redirected to Apartado legal y regulatorio url', () => {
-    cy.url().should('be.equal', 'https://uat.claropay.com.ar/landing/legals.html')
+    cy.url().should('be.equal', 'https://ni.claropay.com.ar/landing/legals.html')
 });
 
 When ('A user clicks on Defensa al consumidor', () => {
@@ -172,7 +172,7 @@ Then ('A user will be redirected to Defensa al consumidor url', () => {
 //Scenario: FAQS
 
 Given ('A user visits Faqs', () => {
-    cy.visit('https://uat.claropay.com.ar/landing/faqs.html')
+    cy.visit('https://ni.claropay.com.ar/landing/faqs.html')
 });
 
 Then ('A user will see all sections from FAQS', () => {
@@ -253,7 +253,7 @@ Then ('A user will see all sections from FAQS', () => {
 // Scenario: TyC APIs and Text assertion
 
 Given ('A user visits TyC', () => {
-   cy.visit('https://uat.claropay.com.ar/landing/legals.html').wait(2000)
+   cy.visit('https://ni.claropay.com.ar/landing/legals.html').wait(2000)
 });
 
 Then ('EP returns 200', () => {
