@@ -4,8 +4,10 @@
   "description": "test",
   "main": "index.js",
   "scripts": {
-    "claro": "cypress open --e2e --browser chrome",
-    "claroHead": "cypress run --e2e --browser chrome"
+    "claroOpen": "cypress open --e2e --browser chrome --config viewportWidth=880,viewportHeight=660 ",
+    "claroRun": "cypress run --browser chrome --config viewportWidth=880,viewportHeight=660",
+    "claroOpenMobile": "cypress open --e2e --browser chrome --config viewportWidth=375,viewportHeight=667 ",
+    "claroMobileRun": "cypress run --browser chrome --config viewportWidth=375,viewportHeight=667"
   },
   "author": "me",
   "license": "ISC",

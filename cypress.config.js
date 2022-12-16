@@ -8,12 +8,12 @@ const createEsbuildPlugin =
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: 'https://ni.claropay.com.ar/Inicio',
+    baseUrl: 'https://claropay.com.ar/Inicio',
     chromeWebSecurity: false,
     experimentalSessionAndOrigin: true,
     experimentalSessionSupport : true,
-    viewportWidth: 800,
-    viewportHeight: 660,
+    // viewportWidth: 800,
+    // viewportHeight: 660,
     'chromeWebSecurity': false,
     "cucumberautocomplete.strictGherkinCompletion": true,
     "include": ["node_modules/cypress", "./cypress/**/*.js"],
