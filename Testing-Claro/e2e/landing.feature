@@ -1,4 +1,3 @@
-
 Feature: Landing
     As a user I want to access to the Landing and be able to explore it.
 
@@ -66,4 +65,3 @@ Feature: Landing
         Given A user visits TyC
         Then EP returns 200 
         And A user will see all sections from TyC
-

@@ -1,5 +1,4 @@
 const { defineConfig } = require('cypress');
-// const { Before, After } = require('cypress-cucumber-preprocessor/steps');
 const createBundler = require('@bahmutov/cypress-esbuild-preprocessor');
 const addCucumberPreprocessorPlugin =
   require('@badeball/cypress-cucumber-preprocessor').addCucumberPreprocessorPlugin;
@@ -8,12 +7,10 @@ const createEsbuildPlugin =
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: 'https://claropay.com.ar/Inicio',
+    baseUrl: 'https://claropay.com.ar',
     chromeWebSecurity: false,
     experimentalSessionAndOrigin: true,
     experimentalSessionSupport : true,
-    // viewportWidth: 800,
-    // viewportHeight: 660,
     'chromeWebSecurity': false,
     "cucumberautocomplete.strictGherkinCompletion": true,
     "include": ["node_modules/cypress", "./cypress/**/*.js"],
@@ -32,7 +29,6 @@ module.exports = defineConfig({
       
       return config;
     },
-
     specPattern: '**/e2e/*.feature',
   },
 });
