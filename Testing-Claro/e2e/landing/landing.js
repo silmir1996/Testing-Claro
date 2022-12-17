@@ -1,14 +1,11 @@
  import {Given, When, Then, And, Background} from '@badeball/cypress-cucumber-preprocessor';
  import '@testing-library/cypress/add-commands';
- import "cypress-localstorage-commands";
- import 'cypress-v10-preserve-cookie';
- import 'cypress-data-session';
  import { slowCypressDown } from 'cypress-slow-down';
 
 //Scenario: Landing - First Section Validation
 
 Given ('A user access the Landing', () => {
-    cy.visit('/').wait(4000)
+    cy.visit('/')
 });
 
 Then ('A user visualizes first section text', () => {
@@ -23,9 +20,9 @@ Then ('A user visualizes buttons and logo', () => {
     //Assertion de botón Iniciar Sesión, verificando que este habilitado y visible
     cy.get('.styles_wrapper__SKuiD > .btn').should('have.text', 'Iniciar sesión').and('be.enabled').and('be.visible');
     //Assertion de Logo Claro Pay en la esquina Izquierda
-    cy.get('#main-container > div.bg-img > header > svg').should('exist').and('be.visible');
+    cy.get('#main-container > div.bg-img > header > svg').should('be.visible');
     //Assertion de botón para scrollear abajo: Hover, y que sea visible
-    cy.get('#main-container > div.styles_wrapper__mvT1k.undefined > svg').trigger('mouseover',{force: true}).find('path').should('have.attr','fill','#EB3B2F').should('be.visible');
+    cy.get('#main-container > div.styles_wrapper__mvT1k.undefined > svg').trigger('mouseover', { force: true }).find('path').should('have.attr','fill','#EB3B2F').and('be.visible');
     cy.get('#main-container > div.styles_wrapper__mvT1k.undefined > svg').trigger('mouseout').find('path').should('have.attr','fill','#101010').and('be.visible')
 });
 
@@ -33,7 +30,7 @@ Then ('A user visualizes buttons and logo', () => {
 
 Then ('A user visualizes Ahorra con Claro Pay Card', () => {
     //Assertion card Ahorra con Claro Pay, de texto.
-    cy.get('div[style="background-color:#FFE2E0"]').scrollIntoView().wait(2000).should('have.text', 'Ahorrá con Claro PayPagá una factura Claro y tenés un 25% de reintegro por tres meses. Te devolvemos hasta $250 para que los uses como quieras.Pagá acá').and('be.visible');
+    cy.get('div[style="background-color:#FFE2E0"]').scrollIntoView({ duration: 2000 }).should('have.text', 'Ahorrá con Claro PayPagá una factura Claro y tenés un 25% de reintegro por tres meses. Te devolvemos hasta $250 para que los uses como quieras.Pagá acá').and('be.visible');
     //Click en boton IZQ/BACK para asegurarse que el swipe automatico no obstaculice assertion del botón Paga aca.
     cy.get('.buttonBack___1mlaL').click();
     //Assertion card Ahorra con Claro Pay, de botón.
@@ -55,13 +52,13 @@ Then ('A user visualizes Tus datos rinden más Card', () => {
     //Click en boton DER/NEXT para asegurarse que el swipe automatico no obstaculice assertion botón Recarga acá.
     cy.get('.buttonNext___2mOCa').should('be.visible').click();
     //Assertion de card Tus datos rinden más, de botón.
-    cy.get('div[style="background-color:#FFFFFF"]').children().children().children().should('have.text', 'Recargá acá').and('be.visible');
+    cy.get('div[style="background-color:#FFFFFF"]').children().children().children().should('have.text', 'Recargá acá').and('be.visible')
 });
 
 Then ('A user navigates using scroll buttons', () => {
     //Assertion de botones para scrollear a arriba y a abajo
-    cy.get('#main-container > div.bg-img > section.styles_wrapper__SKuiD > div.styles_wrapper__qSQ_v.undefined > svg').should('exist').and('be.visible');
-    cy.get('#main-container > div.bg-img > header > svg').should('exist').and('be.visible');
+    cy.get('#main-container > div.bg-img > section.styles_wrapper__SKuiD > div.styles_wrapper__qSQ_v.undefined > svg').should('be.visible');
+    cy.get('#main-container > div.bg-img > header > svg').should('be.visible');
     //Scroll a arriba de todo.
     cy.get('#main-container > div.styles_wrapper__mvT1k.undefined > svg').trigger('mouseover', { force: true }).click()
 });
@@ -73,7 +70,7 @@ Then ('A user visualizes Left Slide', () => {
     cy.get('.styles_mock__left__wFFFk').scrollIntoView();
     cy.get('.styles_textMobile__OBWZj').children().should('have.text', 'FÁCILCargá la SUBE, pagá servicios y loque quieras de manera simple.').and('be.visible');
     cy.get('.styles_mock__left__wFFFk').scrollIntoView().should('be.visible');
-    cy.get('.styles_mock__right__Te9A5 > img').trigger('mouseover', 'right', {force: true});
+    cy.get('.styles_mock__right__Te9A5 > img').trigger('mouseover', 'right', { force: true });
     cy.contains('TRANSPARENTETu plata y movimientos, siempre demanera clara y detallada.').should('be.visible');
     cy.get('.styles_card__right__E1tgL').scrollIntoView({ duration: 2000 }).should('have.text', 'APROVECHÁCon Clarosalí ganandosiempre.Iniciá sesión y disfrutá de losbeneficios.Iniciar sesión').and('be.visible');
     cy.get('.styles_card__right__E1tgL').children('button:contains("Iniciar sesión")').should('have.text', 'Iniciar sesión').and('be.enabled').and('be.visible')
@@ -109,12 +106,12 @@ Then ('A user visualizes footer links', () => {
 
 //Scenario: Redirections 
 
-Given ('A user returns to Landing website', () =>{
-    cy.visit('/').wait(1500)
+Given ('A user returns to Landing website', () => {
+    cy.visit('/')
 });
 
 When ('A user clicks on Iniciar Sesión button', () => {
-    cy.get('.styles_wrapper__SKuiD > .btn').should('be.enabled').and('be.visible').click({force: true});
+    cy.get('.styles_wrapper__SKuiD > .btn').should('be.enabled').and('be.visible').click({ force: true });
     cy.log('Botón Inicia Sesión validado')
 });
 
@@ -176,7 +173,7 @@ Given ('A user visits Faqs', () => {
 
 Then ('A user will see all sections from FAQS', () => {
     //Assert boton de scroll up y Hover
-    cy.get('.styles_wrapper__mvT1k > svg').trigger('mouseover',{ force: true }).find('path').should('have.attr','fill','#EB3B2F').should('be.visible');
+    cy.get('.styles_wrapper__mvT1k > svg').trigger('mouseover', { force: true }).find('path').should('have.attr','fill','#EB3B2F').and('be.visible');
     cy.get('.styles_wrapper__mvT1k > svg').trigger('mouseout').find('path').should('have.attr','fill','#101010').and('be.visible');
     cy.get('.title').should('have.text', 'PREGUNTAS FRECUENTES').and('be.visible');
 
@@ -244,7 +241,7 @@ Then ('A user will see all sections from FAQS', () => {
     cy.get('#__next > main > div:nth-child(8) > div > p').scrollIntoView().should('be.visible').children().should('have.text', 'Suspendimos tu cuenta de forma permanente porque detectamos irregularidades en tu comportamiento dentro del sitio. Esto significa que no podrás realizar operaciones.Si consideras que hay algún error, por favor contáctate con nosotros.').and('be.visible');
 
     //Assert boton de scroll up y Hover + click
-    cy.get('.styles_wrapper__mvT1k.undefined').trigger('mouseover',{ force: true }).should('be.visible').click()
+    cy.get('.styles_wrapper__mvT1k.undefined').trigger('mouseover', { force: true }).should('be.visible').click()
 
 });
 
@@ -252,7 +249,7 @@ Then ('A user will see all sections from FAQS', () => {
 // Scenario: TyC APIs and Text assertion
 
 Given ('A user visits TyC', () => {
-   cy.visit('https://claropay.com.ar/landing/legals.html').wait(2000)
+   cy.visit('https://claropay.com.ar/landing/legals.html')
 });
 
 Then ('EP returns 200', () => {

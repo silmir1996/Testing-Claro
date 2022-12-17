@@ -6,6 +6,7 @@
   "scripts": {
     "claroOpen": "cypress open --e2e --browser chrome --config viewportWidth=880,viewportHeight=660 ",
     "claroRun": "cypress run --browser chrome --config viewportWidth=880,viewportHeight=660",
+    "claroRepeat": "cypress-repeat run -n 5 --browser chrome --config viewportWidth=880,viewportHeight=660",
     "claroOpenMobile": "cypress open --e2e --browser chrome --config viewportWidth=375,viewportHeight=667 ",
     "claroMobileRun": "cypress run --browser chrome --config viewportWidth=375,viewportHeight=667"
   },
@@ -16,9 +17,8 @@
     "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
     "@testing-library/cypress": "^8.0.3",
     "cypress": "^10.9.0",
-    "cypress-data-session": "^2.2.1",
-    "cypress-localstorage-commands": "^2.2.1",
-    "cypress-slow-down": "^1.2.1",
-    "cypress-v10-preserve-cookie": "^1.2.1"
+    "cypress-repeat": "^2.3.3",
+    "cypress-slow-down": "^1.2.1"
   }
 }
+

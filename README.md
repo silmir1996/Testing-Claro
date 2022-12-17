@@ -7,3 +7,4 @@ Instalar Cucumber @badeball: npm install @badeball cypress-cucumber-preprocessor
 
 Instalar Testing Library optimazada para Gherkin:  npm install --save-dev @testing-library/cypress
 
+Instalar Cypress Repeat: npm i -D cypress-repeat

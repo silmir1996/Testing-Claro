@@ -10,23 +10,18 @@ module.exports = defineConfig({
     baseUrl: 'https://claropay.com.ar',
     chromeWebSecurity: false,
     experimentalSessionAndOrigin: true,
-    experimentalSessionSupport : true,
-    'chromeWebSecurity': false,
+    defaultCommandTimeout: 30000,
+    video: false,
     "cucumberautocomplete.strictGherkinCompletion": true,
-    "include": ["node_modules/cypress", "./cypress/**/*.js"],
-    'supportFile': 'Testing-Claro/support/commands.js',
+    include: ["node_modules/cypress", "./cypress/**/*.js"],
+    supportFile: 'Testing-Claro/support/commands.js',
     
     async setupNodeEvents(on, config) {
-      require('cypress-data-session/src/plugin')(on, config);
       const bundler = createBundler({
         plugins: [createEsbuildPlugin(config)],
       });
-
-      require("cypress-localstorage-commands/plugin")(on, config);
-
       on('file:preprocessor', bundler);
       await addCucumberPreprocessorPlugin(on, config);
-      
       return config;
     },
     specPattern: '**/e2e/*.feature',
