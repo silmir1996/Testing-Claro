@@ -5,16 +5,16 @@ Feature: Landing
         Given A user access the Landing
         When A user clicks on Iniciar Sesión button
         Then A user will be redirected to login
-        Given A user returns to Landing website
+        Given A user access the Landing
         When A user clicks on Pagá acá button
         Then A user will be redirected to login
-        Given A user returns to Landing website
+        Given A user access the Landing
         When A user clicks on Recargá acá button
         Then A user will be redirected to login
-        Given A user returns to Landing website
+        Given A user access the Landing
         When A user clicks on Iniciar Sesión #2 button
         Then A user will be redirected to login
-        Given A user returns to Landing website
+        Given A user access the Landing
         When A user clicks on Iniciar Sesión #3 button
         Then A user will be redirected to login
 
