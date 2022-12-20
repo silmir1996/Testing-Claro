@@ -136,27 +136,18 @@ Then ('A user will be redirected to login', () => {
 
 //Scenario: Footer redirections
 
-When ('A user clicks on FAQS', () => {
-    cy.get('[href="/landing/faqs.html"]').should('be.visible').and('have.text', 'FAQS').invoke('removeAttr', 'target').click()
-});
-
-Then ('A user will be redirected to FAQS url', () => {
+Then ('A user clicks on FAQS and is redirected to FAQS page', () => {
+    cy.get('[href="/landing/faqs.html"]').should('be.visible').and('have.text', 'FAQS').invoke('removeAttr', 'target').click();
     cy.url().should('be.equal', 'https://claropay.com.ar/landing/faqs.html')
 });
 
-When ('A user clicks on Apartado legal y regulatorio', () => {
-    cy.get('[href="/landing/legals.html"]').should('be.visible').and('have.text', 'Apartado legal y regulatorio').invoke('removeAttr', 'target').click()
-});
-
-Then ('A user will be redirected to Apartado legal y regulatorio url', () => {
+Then ('A user clicks on Apartado legal y regulatorio and is redirected to TyC page', () => {
+    cy.get('[href="/landing/legals.html"]').should('be.visible').and('have.text', 'Apartado legal y regulatorio').invoke('removeAttr', 'target').click();
     cy.url().should('be.equal', 'https://claropay.com.ar/landing/legals.html')
 });
 
-When ('A user clicks on Defensa al consumidor', () => {
-    cy.get('[href="https://www.argentina.gob.ar/produccion/defensadelconsumidor/formulario"]').should('be.visible').and('have.text', 'Defensa al consumidor').invoke('removeAttr', 'target').click()
-});
-
-Then ('A user will be redirected to Defensa al consumidor url', () => {
+Then ('A user clicks on Defensa al consumidor and is redirected to its page', () => {
+    cy.get('[href="https://www.argentina.gob.ar/produccion/defensadelconsumidor/formulario"]').should('be.visible').and('have.text', 'Defensa al consumidor').invoke('removeAttr', 'target').click();
     cy.url().should('be.equal', 'https://autogestion.produccion.gob.ar/consumidores')
 });
 
@@ -164,6 +155,10 @@ Then ('A user will be redirected to Defensa al consumidor url', () => {
 
 Given ('A user visits Faqs', () => {
     cy.visit('https://claropay.com.ar/landing/faqs.html')
+});
+
+Then ('A user will be redirected to FAQS url', () => {
+    cy.url().should('be.equal', 'https://claropay.com.ar/landing/faqs.html')
 });
 
 Then ('A user will see all sections from FAQS', () => {

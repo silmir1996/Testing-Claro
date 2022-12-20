@@ -47,14 +47,11 @@ Feature: Landing
 
     Scenario: Footer redirections
         Given A user access the Landing
-        When A user clicks on FAQS
-        Then A user will be redirected to FAQS url
+        Then A user clicks on FAQS and is redirected to FAQS page
         Given A user access the Landing
-        When A user clicks on Apartado legal y regulatorio        
-        Then A user will be redirected to Apartado legal y regulatorio url
+        Then A user clicks on Apartado legal y regulatorio and is redirected to TyC page
         Given A user access the Landing
-        When A user clicks on Defensa al consumidor
-        Then A user will be redirected to Defensa al consumidor url
+        Then A user clicks on Defensa al consumidor and is redirected to its page
 
     Scenario: Faqs
         Given A user visits Faqs
